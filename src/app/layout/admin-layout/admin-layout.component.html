@@ -1,7 +1,15 @@
-<div class="admin-wrapper">
-    <app-admin-header></app-admin-header>
-    <app-admin-main>
-      <router-outlet></router-outlet>
-    </app-admin-main>
-    <app-admin-footer></app-admin-footer>
+<div class="app-layout-stacked-side flex flex-auto flex-col">
+    <div class="flex flex-auto min-w-0">
+      <app-admin-sidebar
+        [activeRoute]="currentRoute"
+        (menuClick)="onMenuClick($event)">
+      </app-admin-sidebar>
+      <div class="flex flex-col flex-auto min-h-screen">
+        <app-admin-header></app-admin-header>
+        <div class="h-full flex flex-auto flex-col">
+          <router-outlet></router-outlet>
+        </div>
+        <app-admin-footer></app-admin-footer>
+      </div>
+    </div>
   </div>

@@ -1,0 +1,15 @@
+<div class="stacked-side-nav">
+    <div class="stacked-side-nav-mini stacked-side-nav-mini-light">
+      <div class="logo px-4">
+        <img src="assets/admin-assets/img/logo/logo-light-streamline.png" alt="Logo">
+      </div>
+      <nav class="menu menu-light px-4 pb-4">
+        <div class="menu-item stacked-side-nav-menu-item" 
+             [class.menu-item-active]="activeRoute === 'dashboard'"
+             (click)="onMenuSelect('dashboard')">
+          <!-- Menu items -->
+        </div>
+        <!-- Other menu items -->
+      </nav>
+    </div>
+  </div>

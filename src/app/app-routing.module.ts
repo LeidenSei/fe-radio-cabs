@@ -4,32 +4,46 @@ import { HomePageComponent } from './features/home/pages/home-page/home-page.com
 import { DriversComponent } from './features/home/pages/drivers/drivers.component';
 import { AdvertisementComponent } from './features/home/pages/advertisement/advertisement.component';
 import { FeedbackComponent } from './features/home/pages/feedback/feedback.component';
+import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { PublicLayoutComponent } from './layout/public-layout/public-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent
-  },
-  {
-    path: 'listing',
-    loadChildren: () => import('./features/listing/listing.module').then(m => m.ListingModule)
-  },
-  {
-    path: 'drivers', 
-    component:DriversComponent
-  },
-  {
-    path: 'advertisement',
-    component:AdvertisementComponent
-  },
-  {
-    path: 'feedback',
-    component:FeedbackComponent
+    component: PublicLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HomePageComponent
+      },
+      {
+        path: 'listing',
+        loadChildren: () => import('./features/listing/listing.module').then(m => m.ListingModule)
+      },
+      {
+        path: 'drivers',
+        component: DriversComponent
+      },
+      {
+        path: 'advertisement',
+        component: AdvertisementComponent
+      },
+      {
+        path: 'feedback',
+        component: FeedbackComponent
+      }
+    ]
   },
   {
     path: 'admin',
-    loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule),
-    // canActivate: [AuthGuard]
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule),
+        // canActivate: [AuthGuard]
+      }
+    ]
   }
 ];
 
