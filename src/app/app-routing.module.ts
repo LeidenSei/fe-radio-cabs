@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './features/home/pages/home-page/home-page.component';
+import { DriversComponent } from './features/home/pages/drivers/drivers.component';
+import { AdvertisementComponent } from './features/home/pages/advertisement/advertisement.component';
+import { FeedbackComponent } from './features/home/pages/feedback/feedback.component';
 
 const routes: Routes = [
   {
@@ -13,15 +16,15 @@ const routes: Routes = [
   },
   {
     path: 'drivers', 
-    loadChildren: () => import('./features/drivers/drivers.module').then(m => m.DriversModule)
+    component:DriversComponent
   },
   {
     path: 'advertisement',
-    loadChildren: () => import('./features/advertisement/advertisement.module').then(m => m.AdvertisementModule) 
+    component:AdvertisementComponent
   },
   {
     path: 'feedback',
-    loadChildren: () => import('./features/feedback/feedback.module').then(m => m.FeedbackModule)
+    component:FeedbackComponent
   },
   {
     path: 'admin',
