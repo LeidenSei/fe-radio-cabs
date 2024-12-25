@@ -28,14 +28,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/assets/admin-assets/css/style.css"
+              "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/admin-assets/js/vendors.min.js",
-              "src/assets/admin-assets/vendors/apexcharts/apexcharts.js", 
-              "src/assets/admin-assets/js/pages/project-dashboard.js",
-              "src/assets/admin-assets/js/app.min.js"
             ]
           },
           "configurations": {
