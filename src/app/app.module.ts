@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { LayoutModule } from './layout/layout.module';
 
 import { AppComponent } from './app.component';
 import { AdminLayoutModule } from './layout/admin-layout/admin-layout.module';
+import { PublicLayoutModule } from './layout/public-layout.module';
+import { AuthInterceptor } from './core/interceptor/auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,10 +15,16 @@ import { AdminLayoutModule } from './layout/admin-layout/admin-layout.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LayoutModule,
+    PublicLayoutModule,
     AdminLayoutModule   
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

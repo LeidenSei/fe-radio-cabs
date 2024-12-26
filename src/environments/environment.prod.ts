@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.radiocabs.com/api'
+  apiUrl: 'https://localhost:7274/api' 
 };

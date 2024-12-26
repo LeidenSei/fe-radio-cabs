@@ -65,7 +65,8 @@ export class AdminLayoutComponent {
     const scripts = document.querySelectorAll('script[src*="admin-assets"]');
     scripts.forEach(script => body.removeChild(script));
   }
-  onMenuClick(event:any){
-    
+  onMenuClick(event: any) {
+    // Handle menu click event
+    console.log('Menu clicked:', event);
   }
 }

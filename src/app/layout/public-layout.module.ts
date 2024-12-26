@@ -25,4 +25,4 @@ import { FooterComponent } from './public-layout/footer/footer.component';
     MainComponent
   ]
 })
-export class LayoutModule { }
+export class PublicLayoutModule { }
