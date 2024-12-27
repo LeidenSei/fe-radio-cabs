@@ -2,9 +2,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// Material Imports
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';  // Add this import
+
+// Component Imports
+import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { CompanyManagementComponent } from './page/company-management/company-management.component';
 import { DriverManagementComponent } from './page/driver-management/driver-management.component';
 import { AdvertiseManagementComponent } from './page/advertise-management/advertise-management.component';
@@ -29,12 +36,12 @@ const routes: Routes = [
       },
       {
         path: 'company',
-        component:CompanyManagementComponent
+        component: CompanyManagementComponent
       }
-      // Thêm các routes admin khác
     ]
   }
 ];
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -49,11 +56,14 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    HttpClientModule, 
-    ReactiveFormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    // Material Modules
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule  // Add this module
   ]
 })
 export class AdminModule { }

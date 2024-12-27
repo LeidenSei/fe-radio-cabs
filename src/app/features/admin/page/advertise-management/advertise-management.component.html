@@ -1,130 +1,153 @@
-<!-- <div class="container mx-4 my-4">
-    <h2>Advertisement Management</h2>
-    
-    <!-- Search Form -->
-    <!-- <mat-card class="mb-4">
-      <mat-card-content>
-        <form [formGroup]="searchForm" (ngSubmit)="searchAds()">
-          <div class="grid grid-cols-3 gap-4">
-            <mat-form-field>
-              <mat-label>Company</mat-label>
-              <input matInput formControlName="companyId">
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Status</mat-label>
-              <mat-select formControlName="isActive">
-                <mat-option [value]="true">Active</mat-option>
-                <mat-option [value]="false">Inactive</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-raised-button color="primary" type="submit">Search</button>
-          </div>
-        </form>
-      </mat-card-content>
-    </mat-card> -->
+<div class="container mx-4 my-4">
+  <h2>{{isEditing ? 'Cập nhật quảng cáo' : 'Thêm quảng cáo mới'}}</h2>
+  
+  <!-- Search Form -->
+  <mat-card class="mb-4">
+    <mat-card-content>
+      <form [formGroup]="searchForm" (ngSubmit)="searchAds()">
+        <div class="grid grid-cols-3 gap-4">
+          <mat-form-field>
+            <mat-label>Công ty</mat-label>
+            <input matInput formControlName="companyId">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Trạng thái</mat-label>
+            <mat-select formControlName="isActive">
+              <mat-option [value]="true">Đang hoạt động</mat-option>
+              <mat-option [value]="false">Ngừng hoạt động</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit">Tìm kiếm</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 
-    <!-- Add Advertisement Form -->
-    <!-- <mat-card class="mb-4">
-      <mat-card-header>
-        <mat-card-title>Add New Advertisement</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form [formGroup]="adForm" (ngSubmit)="onSubmit()">
-          <div class="grid grid-cols-2 gap-4">
-            <mat-form-field>
-              <mat-label>Company ID</mat-label>
-              <input matInput formControlName="companyId" type="number">
-            </mat-form-field>
-            
-            <mat-form-field>
-              <mat-label>Designation</mat-label>
-              <input matInput formControlName="designation">
-            </mat-form-field>
-            
-            <mat-form-field>
-              <mat-label>Description</mat-label>
-              <textarea matInput formControlName="description"></textarea>
-            </mat-form-field>
-            
-            <mat-form-field>
-              <mat-label>Start Date</mat-label>
+  <!-- Add/Edit Form -->
+  <mat-card class="mb-4">
+    <mat-card-header>
+      <mat-card-title>{{isEditing ? 'Cập nhật quảng cáo' : 'Thêm quảng cáo mới'}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="adForm" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-2 gap-4">
+          <mat-form-field>
+            <mat-label>Mã Công Ty</mat-label>
+            <input matInput formControlName="companyId" type="number">
+            <mat-error *ngIf="adForm.get('companyId')?.hasError('required')">
+              Vui lòng nhập mã công ty
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Chức Danh</mat-label>
+            <input matInput formControlName="designation">
+            <mat-error *ngIf="adForm.get('designation')?.hasError('required')">
+              Vui lòng nhập chức danh
+            </mat-error>
+            <mat-error *ngIf="adForm.get('designation')?.hasError('minlength')">
+              Chức danh phải có ít nhất 3 ký tự
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <mat-label>Mô Tả</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+            <mat-error *ngIf="adForm.get('description')?.hasError('required')">
+              Vui lòng nhập mô tả
+            </mat-error>
+          </mat-form-field>
+          
+          <div class="flex gap-4">
+            <mat-form-field class="w-1/2">
+              <mat-label>Ngày Bắt Đầu</mat-label>
               <input matInput [matDatepicker]="startPicker" formControlName="startDate">
               <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
               <mat-datepicker #startPicker></mat-datepicker>
             </mat-form-field>
             
-            <mat-form-field>
-              <mat-label>End Date</mat-label>
+            <mat-form-field class="w-1/2">
+              <mat-label>Ngày Kết Thúc</mat-label>
               <input matInput [matDatepicker]="endPicker" formControlName="endDate">
               <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
               <mat-datepicker #endPicker></mat-datepicker>
             </mat-form-field>
-            
-            <div>
-              <mat-slide-toggle formControlName="isActive">Active</mat-slide-toggle>
-            </div>
-            
-            <div>
-              <input type="file" (change)="onFileSelected($event)" accept="image/*">
-            </div>
           </div>
           
-          <div class="mt-4">
-            <button mat-raised-button color="primary" type="submit" [disabled]="!adForm.valid">
-              Submit
-            </button>
+          <div>
+            <mat-slide-toggle formControlName="isActive">Kích hoạt</mat-slide-toggle>
           </div>
-        </form>
-      </mat-card-content>
-    </mat-card> -->
-
-    <!-- Advertisements List -->
-    <!-- <mat-card>
-      <mat-card-content>
-        <table mat-table [dataSource]="advertisements" class="w-full">
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let ad"> {{ad.id}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="company">
-            <th mat-header-cell *matHeaderCellDef> Company </th>
-            <td mat-cell *matCellDef="let ad"> {{ad.company?.name}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="designation">
-            <th mat-header-cell *matHeaderCellDef> Designation </th>
-            <td mat-cell *matCellDef="let ad"> {{ad.designation}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let ad"> 
-              <mat-chip-list>
-                <mat-chip [color]="ad.isActive ? 'primary' : 'warn'" selected>
-                  {{ad.isActive ? 'Active' : 'Inactive'}}
-                </mat-chip>
-              </mat-chip-list>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let ad">
-              <button mat-icon-button (click)="editAd(ad)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button color="warn" (click)="deleteAd(ad.id)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+          
+          <div>
+            <input type="file" (change)="onFileSelected($event)" accept="image/*">
+          </div>
+        </div>
         
-        <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
-      </mat-card-content>
-    </mat-card>
-  </div> -->
+        <div class="mt-4 flex gap-2">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!adForm.valid">
+            {{isEditing ? 'Cập nhật' : 'Thêm mới'}}
+          </button>
+          <button *ngIf="isEditing" mat-button type="button" (click)="cancelEdit()">
+            Hủy
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- List -->
+  <mat-card>
+    <mat-card-content>
+      <table mat-table [dataSource]="advertisements">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let ad">{{ad.id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="company">
+          <th mat-header-cell *matHeaderCellDef>Công Ty</th>
+          <td mat-cell *matCellDef="let ad">{{ad.company?.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="designation">
+          <th mat-header-cell *matHeaderCellDef>Chức Danh</th>
+          <td mat-cell *matCellDef="let ad">{{ad.designation}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Trạng Thái</th>
+          <td mat-cell *matCellDef="let ad">
+            <mat-chip-list>
+              <mat-chip [color]="ad.isActive ? 'primary' : 'warn'" selected>
+                {{ad.isActive ? 'Đang hoạt động' : 'Ngừng hoạt động'}}
+              </mat-chip>
+            </mat-chip-list>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Thao Tác</th>
+          <td mat-cell *matCellDef="let ad">
+            <button mat-icon-button (click)="editAd(ad)" matTooltip="Sửa">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteAd(ad.id)" matTooltip="Xóa">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator 
+        [pageSizeOptions]="[5, 10, 25]" 
+        [pageSize]="10"
+        [length]="totalItems"
+        (page)="onPageChange($event)"
+        showFirstLastButtons>
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
