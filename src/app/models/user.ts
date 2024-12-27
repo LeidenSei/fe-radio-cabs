@@ -10,13 +10,13 @@ export interface User {
   }
   
   export interface QueryParams {
-    pageIndex: number;
+    pageNumber: number;  
     pageSize: number;
-    searchTerm?: string;
-    sortColumn?: string;
-    sortDirection?: 'asc' | 'desc';
-    filterColumns?: { [key: string]: any };
-  }
+    keyword?: string;
+    status?: string;
+    sortBy: string;  
+    sortDir: string;  
+   }
   
   export interface CreateUserDTO {
     username: string;

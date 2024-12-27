@@ -1,0 +1,77 @@
+<div id="root">
+    <div class="app-layout-blank flex flex-auto flex-col h-[100vh]">
+        <main class="h-full">
+            <div class="page-container relative h-full flex flex-auto flex-col">
+                <div class="h-full">
+                    <div class="container mx-auto flex flex-col flex-auto items-center justify-center min-w-0 h-full">
+                        <div class="card min-w-[320px] md:min-w-[450px] card-shadow">
+                            <div class="card-body md:p-10">
+                                <div class="text-center">
+                                    <div class="logo">
+                                        <img class="mx-auto" src="assets/admin-assets/img/logo/logo-light-streamline.png" alt="Admin logo">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="mb-4">
+                                        <h3 class="mb-1">Admin Login</h3>
+                                        <p>Please sign in to continue</p>
+                                    </div>
+                                    <div *ngIf="errorMessage" class="alert alert-danger mb-4">
+                                        {{errorMessage}}
+                                    </div>
+                                    <div>
+                                        <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
+                                            <div class="form-container vertical">
+                                                <div class="form-item vertical">
+                                                    <label class="form-label mb-2">Email</label>
+                                                    <div>
+                                                        <input
+                                                            class="input"
+                                                            type="email"
+                                                            formControlName="email"
+                                                            autocomplete="off"
+                                                            placeholder="Email"
+                                                        >
+                                                        <div *ngIf="email && email.invalid && (email.dirty || email.touched)" class="text-red-500 mt-1 text-sm">
+                                                            <div *ngIf="email.errors?.required">Email is required</div>
+                                                            <div *ngIf="email.errors?.email">Please enter a valid email</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-item vertical">
+                                                    <label class="form-label mb-2">Password</label>
+                                                    <div>
+                                                        <span class="input-wrapper">
+                                                            <input
+                                                                class="input pr-8"
+                                                                type="password"
+                                                                formControlName="password"
+                                                                autocomplete="off"
+                                                                placeholder="Password"
+                                                            >
+                                                        </span>
+                                                        <div *ngIf="password && password.invalid && (password.dirty || password.touched)" class="text-red-500 mt-1 text-sm">
+                                                            <div *ngIf="password.errors?.required">Password is required</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button 
+                                                    class="btn btn-solid w-full" 
+                                                    type="submit"
+                                                    [disabled]="adminLoginForm.invalid || isLoading"
+                                                >
+                                                    <span *ngIf="!isLoading">Sign In</span>
+                                                    <span *ngIf="isLoading">Loading...</span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>                
+    </div>
+</div>

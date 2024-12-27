@@ -1,0 +1,138 @@
+<div class="p-4 bg-white rounded-lg shadow">
+    <div class="mb-4">
+      <input 
+        [(ngModel)]="searchTerm"
+        (keyup)="onSearch()"
+        placeholder="Tìm kiếm công ty..."
+        class="w-full p-2 border rounded"
+      />
+    </div>
+
+    <!-- Company List -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="p-2 border">Tên công ty</th>
+            <th class="p-2 border">Email</th>
+            <th class="p-2 border">SĐT</th>
+            <th class="p-2 border">Loại thành viên</th>
+            <th class="p-2 border">Trạng thái</th>
+            <th class="p-2 border">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let company of companies">
+            <td class="p-2 border">{{company.companyName}}</td>
+            <td class="p-2 border">{{company.email}}</td>
+            <td class="p-2 border">{{company.mobile}}</td>
+            <td class="p-2 border">{{company.membershipType}}</td>
+            <td class="p-2 border">
+              <span [class]="company.isActive ? 'text-green-600' : 'text-red-600'">
+                {{company.isActive ? 'Hoạt động' : 'Ngừng hoạt động'}}
+              </span>
+            </td>
+            <td class="p-2 border">
+              <button (click)="editCompany(company)" class="mr-2 text-blue-600">Sửa</button>
+              <button (click)="deleteCompany(company.id)" class="text-red-600">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-4 flex justify-between items-center">
+      <div>
+        Tổng: {{totalItems}} công ty
+      </div>
+      <div>
+        <button 
+          [disabled]="currentPage === 1"
+          (click)="changePage(currentPage - 1)"
+          class="px-3 py-1 border rounded mr-2"
+        >
+          Trước
+        </button>
+        <span>Trang {{currentPage}}/{{totalPages}}</span>
+        <button 
+          [disabled]="currentPage === totalPages"
+          (click)="changePage(currentPage + 1)"
+          class="px-3 py-1 border rounded ml-2"
+        >
+          Sau
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-4 rounded-lg w-full max-w-2xl">
+      <h2 class="text-xl mb-4">{{editingCompany ? 'Sửa' : 'Thêm'}} công ty</h2>
+      <form [formGroup]="companyForm" (ngSubmit)="submitForm()">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="mb-4">
+            <label class="block mb-1">Tên công ty</label>
+            <input formControlName="companyName" class="w-full p-2 border rounded"/>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Email</label>
+            <input formControlName="email" class="w-full p-2 border rounded"/>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Số điện thoại</label>
+            <input formControlName="mobile" class="w-full p-2 border rounded"/>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Điện thoại bàn</label>
+            <input formControlName="telephone" class="w-full p-2 border rounded"/>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Số Fax</label>
+            <input formControlName="faxNumber" class="w-full p-2 border rounded"/>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Địa chỉ</label>
+            <input formControlName="address" class="w-full p-2 border rounded"/>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Người liên hệ</label>
+            <input formControlName="contactPerson" class="w-full p-2 border rounded"/>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Chức vụ</label>
+            <input formControlName="designation" class="w-full p-2 border rounded"/>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Loại thành viên</label>
+            <select formControlName="membershipType" class="w-full p-2 border rounded">
+              <option value="Premium">Premium</option>
+              <option value="Basic">Basic</option>
+              <option value="Free">Free</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Trạng thái</label>
+            <select formControlName="isActive" class="w-full p-2 border rounded">
+              <option [ngValue]="true">Hoạt động</option>
+              <option [ngValue]="false">Ngừng hoạt động</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1">Hình ảnh</label>
+            <input type="file" (change)="onFileSelect($event)" class="w-full"/>
+          </div>
+        </div>
+        
+        <div class="flex justify-end mt-4">
+          <button type="button" (click)="closeModal()" class="px-4 py-2 border rounded mr-2">
+            Hủy
+          </button>
+          <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded">
+            {{editingCompany ? 'Cập nhật' : 'Thêm mới'}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

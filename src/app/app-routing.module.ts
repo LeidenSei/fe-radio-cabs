@@ -6,6 +6,8 @@ import { AdvertisementComponent } from './features/home/pages/advertisement/adve
 import { FeedbackComponent } from './features/home/pages/feedback/feedback.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { PublicLayoutComponent } from './layout/public-layout/public-layout.component';
+import { AdminGuard } from './core/guards/admin.guard';
+import { AdminLoginComponent } from './features/admin/page/admin-login/admin-login.component';
 
 const routes: Routes = [
   {
@@ -35,13 +37,17 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'admin/login',  // Tách route login ra
+    component: AdminLoginComponent
+  },
+  {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [AdminGuard],
     children: [
       {
         path: '',
         loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule),
-        // canActivate: [AuthGuard]
       }
     ]
   }
