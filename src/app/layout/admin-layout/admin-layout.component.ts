@@ -7,6 +7,8 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent {
+  isSidebarOpen: boolean = true;
+
   constructor(private renderer: Renderer2) {}
 
   ngOnInit() {
@@ -26,7 +28,9 @@ export class AdminLayoutComponent {
       this.renderer.appendChild(document.head, link);
     });
   }
-
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
   private async loadScripts() {
     // Load vendors first
     await this.loadScript('assets/admin-assets/js/vendors.min.js');

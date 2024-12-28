@@ -1,0 +1,122 @@
+<!-- driver-form-dialog.component.html -->
+<h2 mat-dialog-title>{{isEditMode ? 'Edit' : 'Add'}} Driver</h2>
+
+<form [formGroup]="driverForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+    <div class="form-grid">
+      <!-- Driver Info Section -->
+      <div class="form-section">
+        <h3>Basic Information</h3>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Driver Name</mat-label>
+          <input matInput formControlName="driverName" required>
+          <mat-error *ngIf="driverForm.get('driverName')?.hasError('required')">
+            Driver name is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Person</mat-label>
+          <input matInput formControlName="contactPerson">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Experience (Years)</mat-label>
+          <input matInput type="number" formControlName="experience" required>
+          <mat-error *ngIf="driverForm.get('experience')?.hasError('required')">
+            Experience is required
+          </mat-error>
+          <mat-error *ngIf="driverForm.get('experience')?.hasError('min')">
+            Experience cannot be negative
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Contact Info Section -->
+      <div class="form-section">
+        <h3>Contact Information</h3>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" required>
+          <mat-error *ngIf="driverForm.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="driverForm.get('email')?.hasError('email')">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Mobile</mat-label>
+          <input matInput formControlName="mobile">
+          <mat-error *ngIf="driverForm.get('mobile')?.hasError('pattern')">
+            Please enter a valid 10-digit mobile number
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Telephone</mat-label>
+          <input matInput formControlName="telephone">
+        </mat-form-field>
+      </div>
+
+      <!-- Address Section -->
+      <div class="form-section">
+        <h3>Location</h3>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <textarea matInput formControlName="address" rows="3"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Additional Info Section -->
+      <div class="form-section">
+        <h3>Additional Information</h3>
+        
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="3"></textarea>
+        </mat-form-field>
+
+        <div class="status-toggle">
+          <mat-slide-toggle [formControlName]="'isActive'" color="primary">
+            Active Status
+          </mat-slide-toggle>
+        </div>
+      </div>
+
+      <!-- Image Upload Section -->
+      <div class="form-section image-section">
+        <h3>Driver Image</h3>
+        
+        <div class="image-upload-container">
+          <input type="file" #fileInput hidden (change)="onFileSelected($event)" accept="image/*">
+          
+          <div class="image-preview" *ngIf="imagePreview">
+            <img [src]="imagePreview" alt="Driver preview">
+          </div>
+          
+          <button type="button" mat-stroked-button (click)="fileInput.click()">
+            <mat-icon>cloud_upload</mat-icon>
+            {{ imagePreview ? 'Change Image' : 'Upload Image' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!driverForm.valid">
+      {{isEditMode ? 'Update' : 'Create'}}
+    </button>
+  </mat-dialog-actions>
+</form>

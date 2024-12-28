@@ -1,0 +1,69 @@
+/* driver-form-dialog.component.scss */
+:host {
+    display: block;
+    width: 800px;
+    max-width: 100%;
+  }
+  
+  .mat-dialog-content {
+    max-height: 80vh;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .form-section {
+    h3 {
+      margin: 0 0 16px;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 16px;
+    }
+  
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+  }
+  
+  .status-toggle {
+    margin: 16px 0;
+  }
+  
+  .image-section {
+    grid-column: span 2;
+    
+    .image-upload-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border: 2px dashed rgba(0, 0, 0, 0.12);
+      border-radius: 4px;
+    }
+  
+    .image-preview {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 4px;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  
+  mat-dialog-actions {
+    padding: 16px 0;
+    margin-bottom: 0;
+    
+    button {
+      margin-left: 8px;
+    }
+  }

@@ -13,6 +13,7 @@ interface MenuItem {
 export class AdminSidebarComponent implements OnInit {
   @Input() activeRoute: string = '';
   @Output() menuClick = new EventEmitter<string>();
+  @Input() isOpen: boolean = false;
 
   onMenuSelect(route: string) {
     this.menuClick.emit(route);
@@ -43,4 +44,7 @@ export class AdminSidebarComponent implements OnInit {
     },
     // Thêm các menu items khác
   ];
+  onMenuItemClick(item: any) {
+    this.menuClick.emit(item.id);
+  }
 }

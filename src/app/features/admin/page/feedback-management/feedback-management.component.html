@@ -1,1 +1,102 @@
-<p>feedback-management works!</p>
+<!-- feedback-management.component.html -->
+<div class="p-4">
+    <mat-card>
+      <mat-card-content>
+        <div class="flex items-center gap-4">
+          <mat-form-field class="w-full">
+            <mat-label>Search</mat-label>
+            <input matInput [(ngModel)]="queryParams.keyword" (keyup)="applyFilter()">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="queryParams.status" (selectionChange)="applyFilter()">
+              <mat-option value="">All</mat-option>
+              <mat-option value="COMPLAINT">Complaint</mat-option>
+              <mat-option value="SUGGESTION">Suggestion</mat-option>
+              <mat-option value="APPRECIATION">Appreciation</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="openDialog()">
+            Add Feedback
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card class="mt-4">
+      <mat-card-content>
+        <table mat-table [dataSource]="dataSource" matSort [matSortActive]="queryParams.sortBy"
+               [matSortDirection]="queryParams.sortDir" (matSortChange)="sortData($event)" class="w-full">
+          
+          <!-- Id Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Id"> ID </th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Name"> Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+  
+          <!-- Email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Email"> Email </th>
+            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+          </ng-container>
+  
+          <!-- Mobile Column -->
+          <ng-container matColumnDef="mobile">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="Mobile"> Mobile </th>
+            <td mat-cell *matCellDef="let row"> {{row.mobile}} </td>
+          </ng-container>
+  
+          <!-- City Column -->
+          <ng-container matColumnDef="city">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="City"> City </th>
+            <td mat-cell *matCellDef="let row"> {{row.city}} </td>
+          </ng-container>
+  
+          <!-- Type Column -->
+          <ng-container matColumnDef="feedbackType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="FeedbackType"> Type </th>
+            <td mat-cell *matCellDef="let row"> {{row.feedbackType}} </td>
+          </ng-container>
+  
+          <!-- Date Column -->
+          <ng-container matColumnDef="submissionDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header="SubmissionDate"> Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.submissionDate | date}} </td>
+          </ng-container>
+  
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-icon-button color="primary" (click)="openDialog(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteFeedback(row.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+  
+        <mat-paginator 
+          [length]="totalItems"
+          [pageSize]="queryParams.pageSize"
+          [pageIndex]="queryParams.pageNumber - 1"
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          (page)="pageChanged($event)"
+          aria-label="Select page">
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

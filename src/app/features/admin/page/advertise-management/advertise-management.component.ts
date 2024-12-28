@@ -177,15 +177,7 @@ export class AdvertiseManagementComponent implements OnInit {
   }
 
   private loadAdvertisements() {
-    this.advertiseService.getAdvertisements().subscribe({
-      next: (response) => {
-        this.advertisements = response.items;
-        this.totalItems = response.total;
-      },
-      error: () => {
-        this.showError('Có lỗi xảy ra khi tải danh sách quảng cáo');
-      }
-    });
+    this.searchAds()
   }
 
   private showSuccess(message: string) {

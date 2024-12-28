@@ -1,0 +1,21 @@
+.stacked-side-nav {
+    transition: all 0.3s ease;
+    width: 250px;
+  }
+  .stacked-side-nav.open {
+    width: 0;
+  }
+  .stacked-side-nav-mini {
+    display: flex;
+    flex-direction: column;
+  }
+  .menu {
+    list-style: none;
+    padding: 0;
+  }
+  .menu-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  

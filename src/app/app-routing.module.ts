@@ -37,19 +37,20 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'admin/login',  // Tách route login ra
+    path: 'admin/login',
     component: AdminLoginComponent
   },
   {
     path: 'admin',
     component: AdminLayoutComponent,
     canActivate: [AdminGuard],
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule),
-      }
-    ]
+    loadChildren: () => import('./features/admin/admin.module')
+      .then(m => m.AdminModule),
+    data: { preload: true } // Add preload flag
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 
