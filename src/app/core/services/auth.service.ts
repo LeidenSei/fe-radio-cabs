@@ -106,4 +106,12 @@ export class AuthService {
     const currentUser = this.currentUser;
     return !!currentUser?.token;
   }
+  storeToken(token: string) {
+    localStorage.setItem('authToken', token);
+  }
+  
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+  
 }
