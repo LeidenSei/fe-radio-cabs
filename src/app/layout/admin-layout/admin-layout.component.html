@@ -1,14 +1,14 @@
 <div class="app-layout-stacked-side flex flex-auto flex-col">
-    <div class="flex flex-auto min-w-0">
-      <app-admin-sidebar
-        (menuClick)="onMenuClick($event)">
-      </app-admin-sidebar>
-      <div class="flex flex-col flex-auto min-h-screen">
-        <app-admin-header></app-admin-header>
-        <div class="h-full flex flex-auto flex-col">
-          <router-outlet></router-outlet>
-        </div>
-        <app-admin-footer></app-admin-footer>
+  <div class="flex flex-auto min-w-0">
+    <!-- Sidebar -->
+    <app-admin-sidebar (menuClick)="onMenuClick($event)"></app-admin-sidebar>
+    <div class="flex flex-col flex-auto min-h-screen">
+      <!-- Header -->
+      <app-admin-header></app-admin-header>
+      <div class="h-full flex flex-auto flex-col">
+        <!-- Render child routes here -->
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
+</div>
