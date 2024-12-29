@@ -25,6 +25,14 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    const header = document.querySelector('.site-header') as HTMLElement;
+    if (header) {
+      const headerHeight = header.offsetHeight;
+      document.querySelector('.login-page')?.setAttribute(
+        'style',
+        `padding-top: ${headerHeight-200}px`
+      );
+    }
   }
 
   get email() { return this.loginForm.get('email'); }
