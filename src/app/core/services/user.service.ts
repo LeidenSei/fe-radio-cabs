@@ -24,11 +24,11 @@ export class UserService {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
-  // Tạo user mới với form data - khớp với API Add
   createUser(userData: CreateUserDTO): Observable<any> {
     const formData = this.prepareFormData(userData);
-    return this.http.post(this.apiUrl, formData);
+    return this.http.post(this.apiUrl, formData); // Gửi formData đi
   }
+  
 
   // Cập nhật user với form data - khớp với API Update
   updateUser(id: number, userData: UpdateUserDTO): Observable<User> {
@@ -44,7 +44,6 @@ export class UserService {
   // Helper để tạo FormData
   private prepareFormData(data: CreateUserDTO | UpdateUserDTO): FormData {
     const formData = new FormData();
-    
     Object.keys(data).forEach(key => {
       if (key === 'images' && data[key] instanceof File) {
         formData.append('images', data[key] as File);
@@ -52,7 +51,7 @@ export class UserService {
         formData.append(key, data[key].toString());
       }
     });
-
     return formData;
   }
+  
 }

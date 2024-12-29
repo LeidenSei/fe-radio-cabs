@@ -15,6 +15,7 @@ import { DriversComponent } from './pages/drivers/drivers.component';
 import { AdvertisementComponent } from './pages/advertisement/advertisement.component';
 import { FeedbackComponent } from './pages/feedback/feedback.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HomeRoutingModule } from './home-routing.module';
     DriversComponent,
     AdvertisementComponent,
     FeedbackComponent,
+    LoginComponent,
 
   ],
   imports: [

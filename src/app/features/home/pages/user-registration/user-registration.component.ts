@@ -1,6 +1,8 @@
+import { AuthService } from './../../../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -12,13 +14,16 @@ export class UserRegistrationComponent implements OnInit {
   isSubmitting = false;
   serverError: string | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private userService: UserService,
+    private AuthService: AuthService
+  ) {
     this.registrationForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', Validators.required],
-      profileImage: [null]
+      // profileImage: [null]
     });
   }
 
@@ -43,8 +48,20 @@ export class UserRegistrationComponent implements OnInit {
   onSubmit(): void {
     if (this.registrationForm.valid) {
       this.isSubmitting = true;
-      // Handle form submission
-      console.log(this.registrationForm.value);
+  
+      // Gửi dữ liệu form đến backend qua UserService
+      const formData = this.registrationForm.value;
+      this.AuthService.register(formData).subscribe(
+        (response) => {
+          console.log('User registered successfully', response);
+          this.isSubmitting = false;
+        },
+        (error) => {
+          console.error('Error registering user', error);
+          this.isSubmitting = false;
+        }
+      );
     }
   }
+  
 }

@@ -34,7 +34,7 @@
         </mat-select>
       </mat-form-field>
 
-      <div class="file-input-container">
+      <!-- <div class="file-input-container">
         <button type="button" mat-stroked-button (click)="fileInput.click()">
           <mat-icon>cloud_upload</mat-icon>
           Choose Profile Image
@@ -46,7 +46,7 @@
         <span class="file-name" *ngIf="registrationForm.get('profileImage')?.value">
           {{ registrationForm.get('profileImage')?.value?.name }}
         </span>
-      </div>
+      </div> -->
 
       <button mat-raised-button color="primary" type="submit" 
               [disabled]="isSubmitting || registrationForm.invalid">

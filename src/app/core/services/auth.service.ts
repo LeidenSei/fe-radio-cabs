@@ -50,6 +50,42 @@ export class AuthService {
     }
     return false;
   }
+  isUser(): boolean {
+    const currentUser = this.currentUser;
+    // Kiểm tra token và decode để lấy role
+    if (currentUser?.token) {
+      const decodedToken = this.decodeToken(currentUser.token);
+      return decodedToken?.role === 'USER';
+    }
+    return false;
+  }
+  isCompany(): boolean {
+    const currentUser = this.currentUser;
+    // Kiểm tra token và decode để lấy role
+    if (currentUser?.token) {
+      const decodedToken = this.decodeToken(currentUser.token);
+      return decodedToken?.role === 'COMPANY';
+    }
+    return false;
+  }
+  isDriver(): boolean {
+    const currentUser = this.currentUser;
+    // Kiểm tra token và decode để lấy role
+    if (currentUser?.token) {
+      const decodedToken = this.decodeToken(currentUser.token);
+      return decodedToken?.role === 'DRIVER';
+    }
+    return false;
+  }
+  isADVERTISE(): boolean {
+    const currentUser = this.currentUser;
+    // Kiểm tra token và decode để lấy role
+    if (currentUser?.token) {
+      const decodedToken = this.decodeToken(currentUser.token);
+      return decodedToken?.role === 'ADVERTISE';
+    }
+    return false;
+  }
 
   getCurrentRole(): string | undefined {
     return this.currentUser?.user?.role;
