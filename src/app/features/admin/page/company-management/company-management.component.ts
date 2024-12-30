@@ -55,15 +55,15 @@ export class CompanyManagementComponent implements OnInit {
       pageNumber: this.currentPage,
       pageSize: this.pageSize,
       keyword: this.searchTerm,
-      sortBy: "Id", 
+      sortBy: "Id",
       sortDir: "asc"
     };
-  
+
     this.companyService.searchCompanies(queryParams).subscribe(
       (response: any) => {
-        this.companies = response.items;
-        this.totalItems = response.totalItems; 
-        this.totalPages = response.totalPages;
+        // Map new response format
+        this.companies = response.data;
+        this.totalItems = response.totalRecords;
       },
       error => console.error('Error loading companies:', error)
     );

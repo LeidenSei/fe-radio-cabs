@@ -68,11 +68,13 @@ export class DriverManagementComponent implements OnInit {
     // Update query params with current pagination state
     this.queryParams.pageNumber = this.paginator?.pageIndex + 1 || 1;
     this.queryParams.pageSize = this.paginator?.pageSize || 10;
-
+  
     this.driverService.searchDrivers(this.queryParams).subscribe({
       next: (response) => {
-        this.dataSource.data = response.items;
-        this.totalItems = response.totalItems;
+        // Map response.data to dataSource
+        this.dataSource.data = response.data;
+        // Map response.totalRecords to totalItems
+        this.totalItems = response.totalRecords;
         this.loading = false;
       },
       error: (error) => {
