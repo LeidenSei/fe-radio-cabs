@@ -1,66 +1,82 @@
 <section class="inner-banner">
     <div class="container">
-        <ul class="thm-breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><span class="sep">.</span></li>
-            <li><span class="page-title">Contact</span></li>
-        </ul><!-- /.thm-breadcrumb -->
-        <h2>Contact</h2>
-    </div><!-- /.container -->
-</section><!-- /.inner-banner -->
-<div class="contact-page-map-wrapper">
-    <div class="google-map" id="contact-google-map" data-map-lat="40.712784" data-map-lng="-74.005941" data-icon-path="assets/home-assets/images/resources/map-pin-1-1.png" data-map-title="Brooklyn, New York, United Kingdom" data-map-zoom="11" data-markers='{
-                "marker-1": [40.712784, -74.005941, "<h4>Main Office</h4><p>Babylon Branch , Lindenhurst, UK</p>"],
-                "marker-2": [40.728157, -74.077642, "<h4>Branch Office</h4> <p>291 Park Ave S, East Meadow, UK</p>"]
-            }'>
+      <ul class="thm-breadcrumb">
+        <li><a routerLink="/">Home</a></li>
+        <li><span class="sep">.</span></li>
+        <li><span class="page-title">Feedback</span></li>
+      </ul>
+      <h2>Feedback</h2>
     </div>
-    <div class="contact-info-block">
-        <p>86 Road Broklyn Street, 600 <br> New York, USA</p>
-        <ul class="contact-infos">
-            <li><i class="fa fa-envelope"></i> needhelp@conexi.com</li>
-            <li><i class="fa fa-phone-square"></i> 666 888 000</li>
-        </ul><!-- /.contact-infos -->
-    </div><!-- /.contact-info-block -->
-</div><!-- /.contact-page-map-wrapper -->
-<section class="contact-form-style-one">
+  </section>
+  
+  <section class="contact-form-style-one">
     <div class="container">
-        <div class="block-title text-center">
-            <div class="dot-line"></div><!-- /.dot-line -->
-            <p>Contact with us now</p>
-            <h2>Leave a message</h2>
-        </div><!-- /.block-title -->
-        <form action="https://ashik.templatepath.net/conexi-preview-files/inc/sendmail.php" class="contact-form-one row" id="contact-form" method="post">
-            <div class="col-lg-6">
-                <div class="input-holder">
-                    <input class="form-control" type="text" name="form_name" placeholder="Your name">
-                </div><!-- /.input-holder -->
-            </div><!-- /.col-lg-6 -->
-            <div class="col-lg-6">
-                <div class="input-holder">
-                    <input class="form-control" type="email" name="form_email" placeholder="Email address">
-                </div><!-- /.input-holder -->
-            </div><!-- /.col-lg-6 -->
-            <div class="col-lg-6">
-                <div class="input-holder">
-                    <input class="form-control" type="text" name="form_phone" placeholder="Phone">
-                </div><!-- /.input-holder -->
-            </div><!-- /.col-lg-6 -->
-            <div class="col-lg-6">
-                <div class="input-holder">
-                    <input class="form-control" type="text" name="form_subject" placeholder="Subject">
-                </div><!-- /.input-holder -->
-            </div><!-- /.col-lg-6 -->
-            <div class="col-lg-12">
-                <div class="input-holder">
-                    <textarea class="form-control" name="form_message" placeholder="Write message"></textarea>
-                </div><!-- /.input-holder -->
-            </div><!-- /.col-lg-6 -->
-            <div class="col-lg-12">
-                <div class="input-holder text-center">
-                    <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
-                    <button class="theme-btn btn-style-two" type="submit" data-loading-text="Please wait..."><span>Send Message</span></button>
-                </div><!-- /.input-holder -->
-            </div><!-- /.col-lg-6 -->
-        </form><!-- /.contact-form-one -->
-    </div><!-- /.container -->
-</section><!-- /.contact-form-style-one -->
+      <div class="block-title text-center">
+        <div class="dot-line"></div>
+        <p>Feedback with us now</p>
+        <h2>Leave a message</h2>
+      </div>
+      <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-lg-6" *ngFor="let field of fields">
+            <div class="input-holder">
+              <input
+                class="form-control"
+                [attr.type]="field.type"
+                [formControlName]="field.name"
+                [placeholder]="field.placeholder"
+                [ngClass]="{'is-invalid': feedbackForm.get(field.name).invalid && feedbackForm.get(field.name).touched}"
+              />
+              <div *ngIf="feedbackForm.get(field.name).invalid && feedbackForm.get(field.name).touched" class="invalid-feedback">
+                <small *ngIf="feedbackForm.get(field.name).hasError('required')">This field is required.</small>
+                <small *ngIf="feedbackForm.get(field.name).hasError('email')">Please enter a valid email.</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="input-holder">
+              <select
+                class="form-select"
+                formControlName="feedbackType"
+                [ngClass]="{'is-invalid': feedbackForm.get('feedbackType').invalid && feedbackForm.get('feedbackType').touched}"
+              >
+                <option value="Compliment">Compliment</option>
+                <option value="Complaint">Complaint</option>
+                <option value="Suggestion">Suggestion</option>
+              </select>
+              <div *ngIf="feedbackForm.get('feedbackType').invalid && feedbackForm.get('feedbackType').touched" class="invalid-feedback">
+                Please select a feedback type.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="input-holder">
+              <textarea
+                class="form-control"
+                formControlName="description"
+                placeholder="Write message"
+                [ngClass]="{'is-invalid': feedbackForm.get('description').invalid && feedbackForm.get('description').touched}"
+              ></textarea>
+              <div *ngIf="feedbackForm.get('description').invalid && feedbackForm.get('description').touched" class="invalid-feedback">
+                Description is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="input-holder text-center">
+              <button class="theme-btn btn-style-two" type="submit" [disabled]="feedbackForm.invalid">
+                <span>Send Message</span>
+              </button>
+              <button
+                class="theme-btn btn-style-two ml-1"
+                (click)="resetForm()"
+              >
+                <span>Reset Form</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  

@@ -35,7 +35,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatSelectModule,
     MatButtonModule,
-    MatIconModule  
+    MatIconModule
   ],
   providers: [
     {

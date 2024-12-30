@@ -3,97 +3,81 @@
         <ul class="thm-breadcrumb">
             <li><a href="index.html">Home</a></li>
             <li><span class="sep">.</span></li>
-            <li><span class="page-title">Advertisement</span></li>
+            <li><span class="page-title">About Us</span></li>
         </ul><!-- /.thm-breadcrumb -->
-        <h2>Advertisement</h2>
+        <h2>About</h2>
     </div><!-- /.container -->
 </section><!-- /.inner-banner -->
 <section class="about-style-two">
-    <div class="container ">
-
-        <div class="form-container-wrapper" style="justify-content: center;">
-            <div class="form-container">
-              <h2>Advertisement Registration</h2>
-              <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-                <!-- Designation -->
-                <div class="form-group">
-                  <label for="designation">Designation</label>
-                  <input id="designation" formControlName="designation" type="text" placeholder="Enter Designation">
-                  <div *ngIf="registrationForm.get('designation')?.invalid && registrationForm.get('designation')?.touched">
-                    <small *ngIf="registrationForm.get('designation')?.hasError('required')">Designation is required.</small>
-                    <small *ngIf="registrationForm.get('designation')?.hasError('minlength')">Designation must be at least 3 characters long.</small>
-                  </div>
-                </div>
-              
-                <!-- Description -->
-                <div class="form-group">
-                  <label for="description">Description</label>
-                  <textarea id="description" formControlName="description" placeholder="Enter Description"></textarea>
-                  <div *ngIf="registrationForm.get('description')?.invalid && registrationForm.get('description')?.touched">
-                    <small *ngIf="registrationForm.get('description')?.hasError('required')">Description is required.</small>
-                    <small *ngIf="registrationForm.get('description')?.hasError('minlength')">Description must be at least 10 characters long.</small>
-                  </div>
-                </div>
-              
-                <!-- Start Date -->
-                <mat-form-field>
-                  <mat-label>Start Date</mat-label>
-                  <input matInput [matDatepicker]="startPicker" formControlName="startDate">
-                  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                  <mat-datepicker #startPicker></mat-datepicker>
-                  <div *ngIf="registrationForm.get('startDate')?.invalid && registrationForm.get('startDate')?.touched">
-                    <small *ngIf="registrationForm.get('startDate')?.hasError('required')">Start Date is required.</small>
-                  </div>
-                </mat-form-field>
-              
-                <!-- End Date -->
-                <mat-form-field>
-                  <mat-label>End Date</mat-label>
-                  <input matInput [matDatepicker]="endPicker" formControlName="endDate">
-                  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-                  <mat-datepicker #endPicker></mat-datepicker>
-                  <div *ngIf="registrationForm.get('endDate')?.invalid && registrationForm.get('endDate')?.touched">
-                    <small *ngIf="registrationForm.get('endDate')?.hasError('required')">End Date is required.</small>
-                  </div>
-                </mat-form-field>
-              
-                <!-- Payment Type -->
-                <div class="form-group">
-                  <label for="payment-type">Payment Type</label>
-                  <select id="payment-type" formControlName="paymentType">
-                    <option value="">Select Payment Type</option>
-                    <option value="credit">Credit</option>
-                    <option value="debit">Debit</option>
-                    <option value="paypal">PayPal</option>
-                  </select>
-                  <div *ngIf="registrationForm.get('paymentType')?.invalid && registrationForm.get('paymentType')?.touched">
-                    <small *ngIf="registrationForm.get('paymentType')?.hasError('required')">Payment Type is required.</small>
-                  </div>
-                </div>
-              
-                <!-- Amount (Readonly based on payment type) -->
-                <div class="form-group" *ngIf="registrationForm.get('paymentType')?.value">
-                  <label for="amount">Amount</label>
-                  <input id="amount" formControlName="amount" type="text" readonly placeholder="Amount will be displayed here">
-                  <div *ngIf="registrationForm.get('amount')?.invalid && registrationForm.get('amount')?.touched">
-                    <small *ngIf="registrationForm.get('amount')?.hasError('required')">Amount is required.</small>
-                  </div>
-                </div>
-              
-                <!-- Submit and Reset Buttons -->
-                <div class="form-actions">
-                  <button type="submit" [disabled]="registrationForm.invalid">Submit</button>
-                  <button type="button" (click)="resetForm()">Reset</button>
-                </div>
-              </form>
-            </div>
-          </div>
-          
-
-     
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="content-block">
+                    <div class="block-title">
+                        <div class="dot-line"></div><!-- /.dot-line -->
+                        <p>Few words about Radio cabs</p>
+                        <h2>Learn about  <br /> Radio cabs company</h2>
+                    </div><!-- /.block-title text-center -->
+                    <p>
+                        Radio Cabs  is a service that provides professional and experienced drivers. We are ready to serve you in situations where you have consumed alcoholic beverages or your health condition prevents you from safely operating your personal vehicle.
+Your assets inside the car will be absolutely secure, and you will travel in your own vehicle.
+                    </p>
+                    <a href="#" class="about-btn">Discover More</a>
+                </div><!-- /.content-block -->
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-6">
+                <div class="hvr-float-shadow">
+                    <div class="image-block">
+                        <img src="assets/home-assets/images/resources/about-1-1.jpg" alt="Awesome Image" />
+                        <div class="bubble-block">
+                            <div class="inner-block">
+                                <p>Trusted by</p>
+                                <span class="counter">4880</span>
+                            </div><!-- /.inner-block -->
+                        </div><!-- /.bubble-block -->
+                    </div><!-- /.image-block -->
+                </div><!-- /.hvr-float-shadow -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
     </div><!-- /.container -->
 </section><!-- /.about-style-two -->
 <hr class="style-one" />
+<div class="brand-carousel-wrapper">
+    <div class="container">
+        <div class="brand-carousel-one owl-theme owl-carousel">
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-1.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-2.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-3.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-4.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-5.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-1.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-2.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-3.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-4.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+            <div class="item">
+                <img src="assets/home-assets/images/brand/brand-1-5.jpg" alt="Awesome Image" />
+            </div><!-- /.item -->
+        </div><!-- /.brand-carousel-one -->
+    </div><!-- /.container -->
+</div><!-- /.brand-carousel-wrapper -->
 
 <section class="feature-style-one thm-black-bg">
     <img src="assets/home-assets/background/feature-bg-1-1.png" alt="Awesome Image" class="feature-bg" />

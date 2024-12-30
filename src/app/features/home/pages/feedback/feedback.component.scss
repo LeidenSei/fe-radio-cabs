@@ -1,0 +1,77 @@
+.contact-form-style-one {
+    .form-select {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 16px;
+      color: #333;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      appearance: none; // Ẩn mũi tên mặc định của trình duyệt
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      transition: all 0.3s ease-in-out;
+      background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"%3E%3Cpath fill="%23333" d="M5 6L0 0h10z"%3E%3C/path%3E%3C/svg%3E');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 12px 12px;
+  
+      &:hover {
+        border-color: #555;
+      }
+  
+      &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+  
+      option {
+        color: #333;
+        background: #fff;
+      }
+    }
+  }
+  
+
+  /* General button styles */
+.theme-btn {
+    padding: 12px 24px; /* Adjust the padding for button size */
+    font-size: 16px; /* Text size */
+    font-weight: 600; /* Bold text */
+    text-transform: uppercase; /* Make the text all uppercase */
+    letter-spacing: 1px; /* Add spacing between letters */
+    border-radius: 4px; /* Rounded corners */
+    border: 2px solid transparent; /* Initial border with transparent color */
+    cursor: pointer; /* Pointer on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    background-color: #3498db; /* Button background color */
+    color: white; /* Text color */
+    display: inline-flex; /* Align text with possible icons */
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+  }
+  
+  /* Button style on hover */
+  .theme-btn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    border-color: #2980b9; /* Change border color on hover */
+  }
+  
+  /* Button focus state */
+  .theme-btn:focus {
+    outline: none; /* Remove outline */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.7); /* Focus shadow */
+  }
+  
+  /* Icon/Span styles within the button */
+  .theme-btn span {
+    font-size: 16px; /* Font size */
+    font-weight: bold;
+    display: inline-block; /* Ensure it stays inline */
+  }
+  
+  /* Additional margin-left (ml-1) styling */
+  .ml-1 {
+    margin-left: 8px; /* Adjust left margin as needed */
+  }

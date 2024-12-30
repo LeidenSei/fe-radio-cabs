@@ -1,1 +1,154 @@
-<p>listing-page works!</p>
+<section class="inner-banner">
+    <div class="container">
+        <ul class="thm-breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><span class="sep">.</span></li>
+            <li><span class="page-title">Listing</span></li>
+        </ul><!-- /.thm-breadcrumb -->
+        <h2>Listing</h2>
+    </div><!-- /.container -->
+</section><!-- /.inner-banner -->
+
+<!-- Driver Registration Section -->
+<!-- Driver Registration Section -->
+
+<div class="listing-page">
+    <!-- Registration Section -->
+    <section class="registration">
+        <h2>Register Your Company</h2>
+        <form [formGroup]="companyForm" (ngSubmit)="onRegister()">
+            <div>
+                <label for="companyName">Company Name</label>
+                <input id="companyName" formControlName="companyName" />
+                <div *ngIf="companyForm.get('companyName')?.invalid && companyForm.get('companyName')?.touched">
+                    <small class="error">Company Name is required.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="contactPerson">Contact Person</label>
+                <input id="contactPerson" formControlName="contactPerson" />
+                <div *ngIf="companyForm.get('contactPerson')?.invalid && companyForm.get('contactPerson')?.touched">
+                    <small class="error">Contact Person is required.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="designation">Designation</label>
+                <input id="designation" formControlName="designation" />
+                <div *ngIf="companyForm.get('designation')?.invalid && companyForm.get('designation')?.touched">
+                    <small class="error">Designation is required.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="address">Address</label>
+                <textarea id="address" formControlName="address"></textarea>
+                <div *ngIf="companyForm.get('address')?.invalid && companyForm.get('address')?.touched">
+                    <small class="error">Address is required.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="mobile">Mobile</label>
+                <input id="mobile" formControlName="mobile" />
+                <div *ngIf="companyForm.get('mobile')?.invalid && companyForm.get('mobile')?.touched">
+                    <small class="error">Please enter a valid mobile number.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="telephone">Telephone</label>
+                <input id="telephone" formControlName="telephone" />
+                <div *ngIf="companyForm.get('telephone')?.invalid && companyForm.get('telephone')?.touched">
+                    <small class="error">Please enter a valid telephone number (optional).</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="fax">Fax Number</label>
+                <input id="fax" formControlName="fax" />
+                <div *ngIf="companyForm.get('fax')?.invalid && companyForm.get('fax')?.touched">
+                    <small class="error">Please enter a valid fax number (optional).</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input id="email" formControlName="email" />
+                <div *ngIf="companyForm.get('email')?.invalid && companyForm.get('email')?.touched">
+                    <small class="error">Please enter a valid email address.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="membershipType">Membership Type</label>
+                <select id="membershipType" formControlName="membershipType">
+                    <option value="Premium">Premium</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Free">Free</option>
+                </select>
+                <div *ngIf="companyForm.get('membershipType')?.invalid && companyForm.get('membershipType')?.touched">
+                    <small class="error">Membership Type is required.</small>
+                </div>
+            </div>
+
+            <div>
+                <label for="paymentType">Payment Type</label>
+                <select id="paymentType" formControlName="paymentType" (change)="updatePayment()">
+                    <option value="Month">Monthly</option>
+                    <option value="Quarter">Quarter</option>
+                </select>
+                <small>Amount: {{ paymentAmount }}</small>
+                <div *ngIf="companyForm.get('paymentType')?.invalid && companyForm.get('paymentType')?.touched">
+                    <small class="error">Payment Type is required.</small>
+                </div>
+            </div>
+
+        <div class="row" style="align-items: center;">
+            <button type="submit" class="col-6" [disabled]="companyForm.invalid">Register</button>
+            <button type="button"  class="col-6 btn btn-primary" (click)="resetForm()">Reset</button>
+        </div>
+        </form>
+    </section>
+
+    <!-- Search Section -->
+
+</div>
+
+
+<!-- Driver Search Section -->
+<section class="driver-search">
+    <h2>Search Registered Company</h2>
+
+    <input matInput (keyup)="onSearch($event)" placeholder="Search company..." #input>
+
+    <!-- Driver Search Results -->
+
+</section>
+
+
+<section class="team-style-one team-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4" *ngFor="let company of companies">
+                <div class="single-team-one">
+                    <div class="image-block">
+                        <img [src]="company.images || 'assets/home-assets/images/team/team-1-1.jpg'"
+                            alt="{{  'Team Member' }}" />
+                    </div><!-- /.image-block -->
+                    <div class="text-block">
+                        <h3>{{company.companyName}}</h3>
+                        <p>Radio cab company</p>
+                        <div class="social-block">
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        </div><!-- /.social-block -->
+                    </div><!-- /.text-block -->
+                </div><!-- /.single-team-one -->
+            </div><!-- /.col-lg-4 -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.team-style-one -->

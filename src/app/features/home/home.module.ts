@@ -16,6 +16,12 @@ import { AdvertisementComponent } from './pages/advertisement/advertisement.comp
 import { FeedbackComponent } from './pages/feedback/feedback.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { LoginComponent } from './pages/login/login.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { AboutComponent } from './pages/about/about.component';
+import { ListingModule } from '../listing/listing.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +31,7 @@ import { LoginComponent } from './pages/login/login.component';
     AdvertisementComponent,
     FeedbackComponent,
     LoginComponent,
+    AboutComponent,
 
   ],
   imports: [
@@ -36,7 +43,15 @@ import { LoginComponent } from './pages/login/login.component';
     MatSelectModule,
     HomeRoutingModule,
     MatButtonModule,
-    MatIconModule  // Added this for mat-icon support
+    MatIconModule, // Added this for mat-icon support,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule, // Optional: for native date handling
+    ListingModule
+
   ],
   exports: [
     HomePageComponent,

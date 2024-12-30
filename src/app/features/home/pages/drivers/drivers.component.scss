@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  // h2 {
+  //   color: #333;
+  //   font-size: 24px;
+  //   margin-bottom: 20px;
+  // }
+  
+  /* Container */
+  .driver-registration, .driver-search {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+  }
+  
+  h3 {
+    color: #444;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  /* Form Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #444;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+    height: 40px;
+  }
+  
+  textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  select {
+    height: 40px;
+  }
+  
+  /* Error Styles */
+  small {
+    color: red;
+    font-size: 12px;
+  }
+  
+  small.ng-dirty {
+    display: block;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #45a049;
+  }
+  
+  /* Driver Search Result */
+  .driver-search .form-group input {
+    width: 80%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .driver-search button {
+    display: inline-block;
+    width: 100px;
+  }
+  
+  .driver-search h3 {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .driver-search p {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .driver-registration, .driver-search {
+      width: 90%;
+    }
+  }
+  

@@ -1,0 +1,24 @@
+/* Styling for the Logo */
+.logo {
+    font-family: 'Arial', sans-serif; /* Choose a clean, modern font */
+    font-size: 2.5rem; /* Adjust the font size */
+    font-weight: bold; /* Make the font bold */
+    color: #ff6f00; /* A bright and vibrant color (like an orange) */
+    text-decoration: none; /* Remove underline */
+    text-transform: uppercase; /* Make the text uppercase */
+    letter-spacing: 2px; /* Increase letter spacing for a stylish effect */
+    display: inline-block; /* Make sure it's inline */
+    padding: 10px 20px; /* Add some padding for spacing around the text */
+    border-radius: 8px; /* Smooth rounded corners */
+    background-color: #fff; /* White background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow for a 3D effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  /* Hover effect */
+  .logo:hover {
+    background-color: #ff6f00; /* Change background color on hover */
+    color: #fff; /* Change text color to white */
+    transform: scale(1.05); /* Slightly enlarge the logo on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+  }

@@ -2,6 +2,7 @@ import { AuthService } from './../../../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -16,7 +17,9 @@ export class UserRegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+        private router: Router,
+    
   ) {
     this.registrationForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
@@ -55,6 +58,7 @@ export class UserRegistrationComponent implements OnInit {
         (response) => {
           console.log('User registered successfully', response);
           this.isSubmitting = false;
+          this.router.navigate(['/login']);
         },
         (error) => {
           console.error('Error registering user', error);

@@ -35,9 +35,14 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           const decodedToken = this.authService.decodeToken(response.token);
-          if (decodedToken.role === 'ADMIN') {
+          const role =decodedToken.role;
+          if (role === 'ADMIN') {
+
             this.router.navigate(['/admin/dashboard']);
-          } else {
+          } else if(role=='COMPANY' || role=='DRIVER' || role=='ADVERTISE' || role=='USER') {
+              // Store the token in localStorage (or sessionStorage if preferred)
+            this.router.navigate(['']);
+          }else {
             this.errorMessage = 'Access denied';
           }
         },

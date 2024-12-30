@@ -13,7 +13,7 @@ export class AuthService {
   private currentUserSubject = new BehaviorSubject<any>(
     JSON.parse(localStorage.getItem('currentUser') || '{}')
   );
-
+  userInfo$ = this.currentUserSubject.asObservable();
   constructor(private http: HttpClient) {}
 
   public get currentUser() {
@@ -89,6 +89,19 @@ export class AuthService {
 
   getCurrentRole(): string | undefined {
     return this.currentUser?.user?.role;
+  }
+
+  getCurrentEmail(): string | undefined {
+    
+    const decodedToken = this.decodeToken(this.currentUser.token);
+    
+    return decodedToken?.email;
+  }
+
+  getCurrentUserId(): string | undefined {
+    const decodedToken = this.decodeToken(this.currentUser.token);
+
+    return decodedToken?.Id;
   }
 
   register(user: RegisterRequest): Observable<AuthResponse> {

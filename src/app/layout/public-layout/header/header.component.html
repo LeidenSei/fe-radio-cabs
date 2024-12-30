@@ -2,11 +2,18 @@
         <div class="top-bar">
             <div class="container">
                 <div class="left-block">
-                    <a href="#"><i class="fa fa-user-circle"></i> Customer Sign In</a>
-                    <a href="#"><i class="fa fa-envelope"></i> needhelp@conexi.com</a>
+                    <a *ngIf="!name" routerLink="/login"><i class="fa fa-user-circle"></i>Sign In</a>
+                    <a *ngIf="!name" routerLink="/admin/login"><i class="fa fa-user-circle"></i>Sign In Admin</a>
+                    <a *ngIf="!name" routerLink="/register"><i class="fa fa-user-circle"></i>Register</a>
+                    
+                    <!-- Show user's name and Sign Out link if user is logged in -->
+                    <div *ngIf="name">
+                      <span>Hi {{ name }}</span>
+                      <a (click)="logout()" style="cursor: pointer;"><i class="fa fa-sign-out-alt"></i>Sign Out</a>
+                    </div>
                 </div><!-- /.left-block -->
                 <div class="logo-block">
-                    <a href="index.html"><img src="assets/home-assets/images/resources/logo-1-1.png" alt="Awesome Image" /></a>
+                    <h3 class="logo">Radio Cabs</h3>
                 </div><!-- /.logo-block -->
                 <div class="social-block">
                     <a href="#"><i class="fa fa-twitter"></i></a>
@@ -28,36 +35,18 @@
                 <div class="main-navigation" id="main-nav-bar">
                     <ul class="navigation-box">
                         <li class=" current ">
-                            <a href="index.html">Home</a>
-                            <ul class="sub-menu">
-                                <li><a href="index.html">Home One</a></li>
-                                <li><a href="index2.html">Home Two</a></li>
-                                <li><a href="index.html">Header Versions</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="index.html">Header One</a></li>
-                                        <li><a href="index2.html">Header Two</a></li>
-                                    </ul><!-- /.sub-menu -->
-                                </li>
-                            </ul><!-- /.sub-menu -->
+                            <a routerLink="/">Home</a>
                         </li>
-                        <li><a href="about.html">About</a></li>
+                        <li><a routerLink="/about">About</a></li>
                         <li>
-                            <a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="driver.html">Our Drivers</a></li>
-                                <li><a href="taxi.html">Our Taxi</a></li>
-                                <li><a href="single-taxi.html">Taxi Details</a></li>
-                            </ul><!-- /.sub-menu -->
+                            <a routerLink="/listing">Listing</a>
                         </li>
-                        <li><a href="book-ride.html">Book A Ride</a></li>
-                        <li>
-                            <a href="blog.html">Blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="blog.html">Blog Grid</a></li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
-                            </ul><!-- /.sub-menu -->
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a routerLink="/driver">Driver</a></li>
+                       
+                        <li><a routerLink="/advertise">Advertise</a></li>
+                     
+                        <li><a routerLink="/feedback">Feed back</a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
                 <div class="right-side-box">
