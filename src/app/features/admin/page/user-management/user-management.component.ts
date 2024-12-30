@@ -48,12 +48,17 @@ export class UserManagementComponent implements OnInit {
   loadUsers(): void {
     const queryParams = this.searchForm.value;
     this.userService.searchUsers(queryParams).subscribe({
-      next: (response) => {
-        this.users = response.items || [];
-        this.dataSource.data = this.users;
+      next: (response: any) => {
+        console.log('API Response:', response);
+        if (response && response.data) {
+          this.users = response.data;
+          this.dataSource.data = this.users;
+          console.log('Updated dataSource:', this.dataSource.data);
+        }
       },
-      error: () => {
-        this.snackBar.open('Failed to load users', 'Close', { duration: 3000 });
+      error: (error) => {
+        console.error('Error loading users:', error);
+        this.snackBar.open('Error loading users', 'Close', { duration: 3000 });
       }
     });
   }

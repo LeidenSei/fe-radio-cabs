@@ -38,8 +38,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', component: CompanyManagementComponent },
       { path: 'company', component: CompanyManagementComponent },
       { path: 'driver', component: DriverManagementComponent, data: { title: 'Driver Management' } },
       { path: 'advertise', component: AdvertiseManagementComponent },
